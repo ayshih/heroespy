@@ -1,0 +1,35 @@
+;
+; HEROESpy Configuration
+;
+; This is a sample sunpy configuration file - you can find a copy
+; of it on your system in heroespy.__file__/data/heroespyrc.  If you edit it
+; there, please note that it will be overridden in your next install.
+;
+; Note that any relative filepaths specified in the HEROESpy configuration file
+; will be relative to HEROESpy's working directory.
+;
+
+;;;;;;;;;;;;;;;;;;;
+; General Options ;
+;;;;;;;;;;;;;;;;;;;
+[general]
+
+; The HEROESpy working directory is the parent directory where all generated
+; and download files will be stored.
+; Default Value: <user's home directory>/heroespy
+; working_dir = /home/$USER/heroespy
+
+; Time Format to be used for displaying time in output (e.g. graphs)
+; The default time format is based on ISO8601 (replacing the T with space)
+; note that the extra '%'s are escape characters
+time_format = %%Y-%%m-%%d %%H:%%M:%%S
+
+;;;;;;;;;;;;;
+; Data ;
+;;;;;;;;;;;;;
+[data]
+
+; Location to references data to. Path should be specified relative to the
+; HEROESpy working directory.
+; Default value: data/
+download_dir = data

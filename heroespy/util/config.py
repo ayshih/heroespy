@@ -46,8 +46,8 @@ def print_config():
     print ("\nCONFIGURATION:")
     for section in hpy.config.sections():
         print("  [%s]" % section)
-        for option in spy.config.options(section):
-            print("  %s = %s" % (option, spy.config.get(section, option)))
+        for option in hpy.config.options(section):
+            print("  %s = %s" % (option, hpy.config.get(section, option)))
         print("")
 
 def _is_writable_dir(p):
@@ -80,7 +80,7 @@ def _find_config_files():
     config_filename = 'heroespyrc'
 
     # find default configuration file
-    module_dir = os.path.dirname(spy.__file__)
+    module_dir = os.path.dirname(hpy.__file__)
     config_files.append(os.path.join(module_dir, 'data', 'heroespy'))
 
     # if a user configuration file exists, add that to list of files to read

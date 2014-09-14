@@ -11,7 +11,7 @@ setup(
     author_email='',
     packages=['heroespy'],
     url='',
-    license='See LICENSE.txt',
+    license='See LICENSE',
     description='',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )

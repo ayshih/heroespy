@@ -59,5 +59,19 @@ def get_atten_coefficients(energy_index):
     
     atten_coef = Spectrum(Quantity(result.index*1000, 'keV'), Quantity(result['mu/rho'], 'm**-3'))
     return atten_coef
+
+def atmospheric_col_density(altitude):
+    """Returns the atmospheric column density or air mass thickness.
     
-def 
+    Parameters
+    ----------
+    altitude : `astropy.units.Quantity`
+    
+    Returns 
+    -------
+    result : `astropy.units.Quantity`
+    """
+    return Quantity(23.5 - 0.5 * balloon_altitude.to('km').value, 'g*cm**-2')
+    
+def atmospheric_transmission(atten_coef, colum_density, source_elevation):
+    np.exp(-atm_col_density / sin(source_elevation * !dtor) * interp_mass_atten[tmp2])

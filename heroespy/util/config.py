@@ -1,4 +1,4 @@
-"""HEROESpy configuration file functionality"""
+"""HEROESpy configuration file functionality."""
 import os
 import tempfile
 import ConfigParser
@@ -27,13 +27,13 @@ def load_config():
 
     # Use absolute filepaths and adjust OS-dependent paths as needed
     filepaths = [
-        ('downloads', 'download_dir')
+        ('data', 'data_dir')
     ]
     _fix_filepaths(config, filepaths)
 
     # check for heroespy working directory and create it if it doesn't exist
-    if not os.path.isdir(config.get('downloads', 'download_dir')):
-        os.mkdir(config.get('downloads', 'download_dir'))
+    if not os.path.isdir(config.get('data', 'data_dir')):
+        os.mkdir(config.get('data', 'data_dir'))
 
     return config
 
@@ -81,7 +81,7 @@ def _find_config_files():
 
     # find default configuration file
     module_dir = os.path.dirname(hpy.__file__)
-    config_files.append(os.path.join(module_dir, 'data', 'heroespy'))
+    config_files.append(os.path.join(module_dir, 'data', 'heroespyrc'))
 
     # if a user configuration file exists, add that to list of files to read
     # so that any values set there will overide ones specified in the default

@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 13 11:45:33 2014
-
-@author: schriste
+HEROES Procedures for Spectrum
 """
+from __future__ import absolute_import
+
 import pandas
 import numpy as np
-from astropy.units import Unit as u
 from astropy.units import Quantity
 from scipy.interpolate import interp2d
-
+from heroespy.util import convert_time
 import heroespy
+
+from astropy.io import fits
 
 energy_index = Quantity(np.arange(20, 80, 1), 'keV')
 
+import heroespy
 DATA_DIR = heroespy.config.get("data", "data_dir")
 
 class Spectrum(object):

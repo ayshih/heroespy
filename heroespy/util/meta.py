@@ -4,12 +4,15 @@ A place to put information about the mission.
 
 from __future__ import absolute_import
 from sunpy.time import parse_time
+from heroespy.util import convert_time
 
 from astropy.io import fits
 from astropy.units import Unit as u
 import pandas
 
 from datetime import timedelta, datetime
+
+DATA_DIR = heroespy.config.get("data", "data_dir")
 
 # mission times
 times = {'launch': parse_time("2013/09/21 11:58:00.0"), 
@@ -27,13 +30,26 @@ times = {'launch': parse_time("2013/09/21 11:58:00.0"),
 # solar target command was received
 #solar_target_change = (datetime(2013, 9, 21, 15, 33, 8), datetime(2013, 9, 21, 15, 33, 16))
 
-class heroes(object):
+class detector(object):
+    def __init__(self, number):
+        self.raw_center = _detector_raw_center[number]
+
+_detector_raw_center = [[320., 280.], 
+                        [320., 300.],
+                        [295., 250.],
+                        [330., 300.],
+                        [280., 280.],
+                        [305., 280.],
+                        [280., 290.],
+                        [330., 290.]]
+
+class payload(object):
     def __init__(self):
         self.location = self._load_location_data()
         self.pointing = self._load_pointing_data()
         
     def _load_location_data(self):
-        file = '/Users/schriste/heroes/gse_proc/f13_gps.fits'
+        file = DATADIR + 'f13_gps.fits'
 
         f = fits.open(file)
         time = f[1].data['time']
@@ -41,7 +57,7 @@ class heroes(object):
         longitude = f[1].data['longitude']
         latitude = f[1].data['latitude']
 
-        times = [timedelta(seconds=t) - timedelta(seconds=60*60*24*2730) + datetime.datetime(2013, 9, 21) for t in time]
+        times = [convert_time(t) for t in time]
         dict = {'time': times, 'height': height, 'latitude': latitude, 'longitude': longitude}
 
         d = pandas.DataFrame(dict)
@@ -50,7 +66,7 @@ class heroes(object):
         return d
     
     def _load_pointing_data(self):
-        file = '/Users/schriste/heroes/gse_proc/f13_aid.fits'
+        file = DATA_DIR + 'f13_aid.fits'
 
         f = fits.open(file)
         altitude = f[1].data['targetalt'].byteswap().newbyteorder()

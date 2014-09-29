@@ -28,8 +28,6 @@
 # -- Mock Modules -------------------------------------------------------------
 
 import sys
-from mock import Mock
-mock = Mock()
 
 modules = {}
 
@@ -38,7 +36,7 @@ sys.modules.update(modules)
 # -- General configuration ----------------------------------------------------
 
 # Load all of the global Astropy configuration
-from astropy_helpers.sphinx.conf import *
+#from astropy_helpers.sphinx.conf import *
 
 # If your documentation needs a minimal Sphinx version, state it here.
 needs_sphinx = '1.1'

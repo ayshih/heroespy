@@ -1,0 +1,4 @@
+HEROESPy
+========
+
+.. automodapi:: heroespy

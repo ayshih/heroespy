@@ -1,0 +1,4 @@
+Utilities
+=========
+
+.. automodapi:: heroespy.util

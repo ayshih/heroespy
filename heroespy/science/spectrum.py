@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-HEROES Procedures for Spectrum
+HEROESPy Procedures for Spectrum
 """
 from __future__ import absolute_import
 

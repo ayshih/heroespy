@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -*- coding: utf-8 -*-
 """
-HEROES Lightcurve Routines
+HEROESPy Lightcurve Routines
 """
 
 from __future__ import absolute_import

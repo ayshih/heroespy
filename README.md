@@ -1,10 +1,11 @@
-HEROESpy
+HEROESPy
 ========
 
 An open-source Python library for the analysis of the High Energy Replicated
 Optics to Explore the Sun (HEROES) telescope data.
 
+[![Documentation Status](https://readthedocs.org/projects/heroespy/badge/?version=latest)](https://readthedocs.org/projects/heroespy/?badge=latest)
+
 Web Links
 ---------
-Homepage: https://plus.google.com/116746714590125162836/posts
-Documentation: http://heroespy.readthedocs.org/en/latest/index.html
+Project Page: https://plus.google.com/116746714590125162836/posts

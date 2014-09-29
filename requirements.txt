@@ -4,5 +4,5 @@ matplotlib>=1.1
 scipy
 pandas>=0.10
 astropy>=0.4.0
-astropy_helpers
+astropy-helpers
 pytest

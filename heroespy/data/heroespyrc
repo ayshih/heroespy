@@ -17,7 +17,7 @@
 ; The HEROESpy working directory is the parent directory where all generated
 ; and download files will be stored.
 ; Default Value: <user's home directory>/heroespy
-; working_dir = /home/$USER/heroespy
+; working_dir = heroespy
 
 ; Time Format to be used for displaying time in output (e.g. graphs)
 ; The default time format is based on ISO8601 (replacing the T with space)

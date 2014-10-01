@@ -7,7 +7,6 @@ from __future__ import absolute_import
 import pandas
 import numpy as np
 from astropy.units import Quantity
-from scipy.interpolate import interp2d
 from heroespy.util import convert_time
 import heroespy
 
@@ -114,36 +113,3 @@ def calculate_transmission(column_density, elevation, mass_atten):
     result : `astropy.units.Quantity` dimensionless (0 to 1)
     """
     return Quantity(np.exp(-column_density / np.sin(elevation.to('deg')) * mass_atten), '')
-    
-def get_optics_effective_area(energy_index, off_axis_angle, module_number=0):
-    """Get the effective area provided by the HEROES optics
-    
-    Parameters
-    ----------
-    energy_index : `astropy.units.Quantity`
-    
-    off_axis_angle : `astropy.units.Quantity`
-    
-    module_number : 13 or 14
-    
-    Returns
-    -------
-    result : Spectrum
-    """
-    if module_number == 5:
-        num_shells = 13
-    else:
-        num_shells == 14
-
-    # Correct effective area for 10% obstructions
-    obstruction_factor = 0.9
-
-    data_file = DATA_DIR + 'aeff_' + num_shells + 'shells_sky.dat.dat'
-    
-    data = np.genfromtxt(data_file, skip_header=2)
-    off_axis_angles = Quantity(np.arange(0,13,1), 'arcmin')    
-    energy = Quantity(data[:,0], 'keV')
-    effective_area_cm2 = data[:,1:] * obstruction_factor
-    f = interp2d(energy.value, off_axis_angles.value, effective_area_cm2)    
-    
-    return Spectrum(energy, Quantity(f(energy.value, off_axis_angle), 'cm**2'))

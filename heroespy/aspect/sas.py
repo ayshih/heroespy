@@ -10,8 +10,8 @@ import pandas
 from scipy import ndimage
 from scipy import optimize
 from scipy.ndimage.interpolation import shift
-from heroespy.util import times
-from astropy import units
+from heroespy.util.meta import times
+from astropy.units import Unit as u
 
 import heroespy
 DATA_DIR = heroespy.config.get("data", "data_dir")
@@ -32,7 +32,7 @@ class pyasCalibration(object):
         self.pixel_number = np.array([966, 1296])
         self.arcsec_per_mil = 1.72
         self.micron_per_mil = 25.4
-        self.pixel_size_um = 6.45 * units.Unit('micron')
+        self.pixel_size_um = 6.45 * u('micron')
         self.focal_length_m = 2
         self.screen_radius_mil = 3000
 
@@ -626,5 +626,17 @@ def create_pyas_summary_file(directory=None):
     return filename
 
 def read_summary_file(filename):
-    df = pandas.read_csv(filename, sep=';', index_col = 0, parse_dates=True)
+    df = pandas.read_csv(filename, sep=';', index_col=0, parse_dates=True)
     return df
+
+def get_pyas_aspect(front=True):
+    if front:
+        file = DATA_DIR + 'SAS1_pointing_data.csv'
+    else:
+        file = DATA_DIR + 'SAS2_pointing_data.csv'
+
+    names = ('ctl_az', 'ctl_el', 'offset_r', 'offset_x', 'offset_y', 'pointing_x', 'pointing_y')
+    data = pandas.read_csv(file, names=names, parse_dates=True, index_col=0, skiprows=1)
+    data.units = (u('arcsec'), u('arcsec'), u('arcsec'), u('arcsec'), u('arcsec'), u('arcsec'), u('arcsec'))
+
+    return data

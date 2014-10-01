@@ -5,6 +5,7 @@ Created on Mon Sep 15 15:21:51 2014
 @author: schriste
 """
 from datetime import timedelta, datetime
+from astropy.time import Time
 
 def convert_time(t):
     """Convert a heroes time float

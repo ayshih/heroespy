@@ -54,6 +54,30 @@ class detector(object):
         """
         return (pixelxy - self.raw_center + 0.5 * u('pix')) * self.plate_scale
 
+    def get_events(self):
+        """Get the list of detector events.
+
+        Parameters
+        ----------
+        detector_number : int
+
+        Returns
+        -------
+        result : `pandas.Dataframe`
+        """
+        filename = DATA_DIR + 'det0' + str(self.identifier) + 's_gc.fits'
+        f = fits.open(filename)
+
+        heroes_times = f[1].data['time']
+        energy = f[1].data['energy']
+        rawx = f[1].data['rawx']
+        rawy = f[1].data['rawy']
+
+        times = [convert_time(t) for t in heroes_times]
+
+        event_list = pandas.DataFrame({'energy': energy, 'rawx': rawx, 'rawy':rawy}, index=times)
+        return event_list
+
 
 class optic(object):
     """An x-ray optic"""
